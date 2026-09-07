@@ -1,5 +1,7 @@
 # 项目简介 · CodeTrail 码途
 
+> **🌐 语言 Language： [中文](INTRO.md) · [English](INTRO.en.md) · [日本語](INTRO.ja.md)**
+
 ## 一句话定位
 
 **CodeTrail 码途**是一个运行在本机浏览器的「代码学习平台」——把你电脑里的任意代码目录自动变成一门带
