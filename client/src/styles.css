@@ -1,0 +1,9 @@
+/* ============================================================
+   CodeTrail 样式入口（v3.2 五主题）
+   base=重置/通用控件 · themes=五套令牌 · components=组件层 · animations=曲线库
+   组件内禁止写死色值，只允许 var(--token)。
+   ============================================================ */
+@import './styles/base.css';
+@import './styles/themes.css';
+@import './styles/components.css';
+@import './styles/animations.css';

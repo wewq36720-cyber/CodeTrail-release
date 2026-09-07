@@ -1,0 +1,8 @@
+.git
+.gitignore
+**/node_modules
+**/dist
+**/.learndesk
+**/*.log
+**/*.sqlite
+**/*.sqlite-*

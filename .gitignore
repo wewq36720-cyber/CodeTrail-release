@@ -1,0 +1,21 @@
+# 依赖与构建产物
+node_modules/
+dist/
+build/
+
+# 运行时数据与日志（平台数据由备份功能负责持久化，不入库）
+.learndesk/
+*.sqlite
+*.sqlite-journal
+*.sqlite-wal
+*.sqlite-shm
+*.log
+
+# 工具与缓存
+.codegraph/
+.DS_Store
+Thumbs.db
+
+# 编辑器/本地配置
+.vscode/
+.idea/

@@ -1,0 +1,26 @@
+services:
+  codetrail:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: codetrail:prod
+    container_name: codetrail-prod
+    init: true
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 8787
+      LEARNDESK_DIR: /data/.learndesk
+      UV_CACHE_DIR: /tmp/uv-cache
+      # UI 里填的 Windows 路径自动映射到容器挂载点（避免「加了根路径却扫不到课程」），示例：D:\Study
+      LEARNDESK_PATH_MAP: "D:\\Study=/workspace"
+    ports:
+      - "127.0.0.1:8787:8787"
+    volumes:
+      - codetrail-ldd:/data/.learndesk
+      - ..:/workspace:ro
+      - codetrail-ldd:/workspace/.learndesk
+
+volumes:
+  codetrail-ldd:

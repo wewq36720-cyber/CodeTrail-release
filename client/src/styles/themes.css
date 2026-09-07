@@ -1,0 +1,237 @@
+/* ============================================================
+   CodeTrail · 主题令牌层
+   五套配色 = 五个可切换主题：cream(默认) / matcha / ink / board / slate
+   html[data-theme="..."] 决定当前主题；ThemeProvider 负责切换与记忆。
+   组件 CSS 禁止写死色值，只允许消费本文件的语义令牌。
+   ============================================================ */
+
+/* ---------- 秩序层（不随主题变） ---------- */
+:root {
+  --fs-display: 26px; --fs-title: 15px; --fs-panel: 13px;
+  --fs-body: 12.5px;  --fs-meta: 11px;
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-6: 24px;
+  --r-panel: 14px;    --r-card: 10px;  --r-pill: 999px;
+  --mono: "JetBrains Mono", "Cascadia Code", "Fira Code", Consolas, monospace;
+  --t: 150ms ease;
+  --overlay: color-mix(in srgb, var(--root-bg) 50%, transparent);
+}
+
+/* ============================================================
+   主题 ① cream · 奶油深绿（默认）
+   ============================================================ */
+:root, :root[data-theme="cream"] {
+  --bg: #F2EEE1; --panel: #FAF7EC; --panel-2: #F1EBD9; --card: #FDFBF4;
+  --line: #E2DAC2; --line-soft: #ECE6D4; --line-hov: #CFC4A2;
+  --ink: #26302A; --ink-2: #5C6659; --ink-3: #8B9183;
+
+  --accent: #2F5D46; --accent-hi: #274D3A; --accent-ink: #F5F3E8;
+  --accent-soft: #E3EBDB; --accent-line: #CBDBC6;
+
+  --amber: #B97F2E; --amber-soft: #F3EEDC; --amber-line: #D8CDA4;
+  --red:   #B5543C; --red-soft:   #F6E3D8; --red-line:   #EBD0C2;
+  --blue:  #3E6E9E; --blue-soft:  #DDE9F4; --blue-line:  #C9DCEC;
+  --ok: #2F5D46; --doing: #B97F2E; --todo: #CFC9B4;
+
+  --guide: #A8B49A; --com: #7E8577;
+  --tree-hov: #EFEAD8; --tree-sel: #E3EBDB;
+  --root-bg: #26302A; --root-fg: #F5F3E8; --root-sub: #B9BFA9; --root-sub-line: #4A5449;
+
+  --br-org: #DF8A2B; --br-grn: #3D9A50; --br-blu: #3B77D9;
+  --br-red: #D9483B; --br-pur: #7C5CC4; --br-amb: #C9A22B;
+
+  --code-bg: #FBF9F0; --code-ln: #B9BFA9; --code-hl: #EFF3DF; --code-hlg: #E2EBC9;
+  --syn-kw: #2F6B46; --syn-ty: #3E6E9E; --syn-fn: #7A4E9E;
+  --syn-st: #A96A2B; --syn-cm: #9AA48E; --syn-nu: #B5543C;
+
+  --note-bg: #F3EEDC; --note-line: #D8CDA4; --note-ink: #6C5F33;
+
+  --tile: #26302A; --tile-ink: #E8EFE2; --px: #9CCB94;
+  --heat-0: #E6E0C8; --heat-1: #B9DCB0; --heat-2: #8CC787; --heat-3: #5FAE63; --heat-4: #3F9A55;
+  --lang-go: #2B6BA8; --lang-py: #C9862B; --lang-md: #3F9A55;
+
+  --tier-ink: #FFFFFF;
+  --tier1: #3E6E9E; --tier1-bg: #DDE9F4; --tier1-bd: #C9DCEC;
+  --tier2: #2F6B46; --tier2-bg: #E3EBDB; --tier2-bd: #CBDCCC;
+  --tier3: #A96A2B; --tier3-bg: #F5E9D4; --tier3-bd: #E6D3AC;
+  --tier4: #7A4E9E; --tier4-bg: #EDE6F5; --tier4-bd: #DACCE8;
+  --folder-fill: #F0B45C; --folder-stroke: #D89A3E;
+
+  --sh-1: 0 1px 2px rgba(96,84,50,.07); --sh-2: 0 6px 18px rgba(96,84,50,.10);
+  --sb-thumb: rgba(120,110,80,.28); --sb-thumb-hover: rgba(120,110,80,.5);
+}
+
+/* ============================================================
+   主题 ② matcha · 浅绿纸
+   ============================================================ */
+:root[data-theme="matcha"] {
+  --bg: #E0EBD8; --panel: #EDF4E7; --panel-2: #E3EEDB; --card: #F2F8ED;
+  --line: #C8DCBE; --line-soft: #D7E7CE; --line-hov: #AFCBA2;
+  --ink: #1F3A24; --ink-2: #47624A; --ink-3: #6E8F68;
+
+  --accent: #2F7D3F; --accent-hi: #256834; --accent-ink: #F2F5EE;
+  --accent-soft: #D8E7CF; --accent-line: #BCD5B0;
+
+  --amber: #C98A2E; --amber-soft: #F4ECD8; --amber-line: #E0D2A8;
+  --red:   #D9483B; --red-soft:   #F8E1DE; --red-line:   #EFC4BE;
+  --blue:  #3B77D9; --blue-soft:  #DFEAF8; --blue-line:  #C7D8EF;
+  --ok: #2F7D3F; --doing: #DF8A2B; --todo: #9DB497;
+
+  --guide: #A9C6A0; --com: #6E8F68;
+  --tree-hov: #E3EEDB; --tree-sel: #D8E7CF;
+  --root-bg: #141813; --root-fg: #F2F5EE; --root-sub: #9DB497; --root-sub-line: #3A463A;
+
+  --br-org: #DF8A2B; --br-grn: #3D9A50; --br-blu: #3B77D9;
+  --br-red: #D9483B; --br-pur: #7C5CC4; --br-amb: #C9A22B;
+
+  --code-bg: #F6FBF2; --code-ln: #A9BBA1; --code-hl: #E4F0DB; --code-hlg: #D5E7C9;
+  --syn-kw: #2F6B46; --syn-ty: #3B77D9; --syn-fn: #7C5CC4;
+  --syn-st: #A96A2B; --syn-cm: #8AA383; --syn-nu: #D9483B;
+
+  --note-bg: #F4ECD8; --note-line: #E0D2A8; --note-ink: #6C5F33;
+
+  --tile: #141813; --tile-ink: #E8EFE2; --px: #7FB87A;
+  --heat-0: #DCE9D3; --heat-1: #B9DCB0; --heat-2: #8CC787; --heat-3: #5FAE63; --heat-4: #3D9A50;
+  --lang-go: #2B6BA8; --lang-py: #C9862B; --lang-md: #3D9A50;
+
+  --tier-ink: #FFFFFF;
+  --tier1: #3B77D9; --tier1-bg: #DFEAF8; --tier1-bd: #C7D8EF;
+  --tier2: #2F7D3F; --tier2-bg: #D8E7CF; --tier2-bd: #BCD5B0;
+  --tier3: #DF8A2B; --tier3-bg: #F4ECD8; --tier3-bd: #E0D2A8;
+  --tier4: #7C5CC4; --tier4-bg: #EFE9FA; --tier4-bd: #D9CCF2;
+  --folder-fill: #F0B45C; --folder-stroke: #D89A3E;
+
+  --sh-1: 0 1px 2px rgba(40,80,40,.08); --sh-2: 0 6px 18px rgba(40,80,40,.12);
+  --sb-thumb: rgba(90,120,80,.3); --sb-thumb-hover: rgba(90,120,80,.5);
+}
+
+/* ============================================================
+   主题 ③ ink · 墨夜亮绿（全站暗色）
+   ============================================================ */
+:root[data-theme="ink"] {
+  --bg: #141612; --panel: #191C17; --panel-2: #20241F; --card: #20241F;
+  --line: #2C322A; --line-soft: #262B24; --line-hov: #3E463B;
+  --ink: #E9EDE4; --ink-2: #A7B09F; --ink-3: #6E766A;
+
+  --accent: #5FCB73; --accent-hi: #7AD98B; --accent-ink: #0F1A10;
+  --accent-soft: #1E2A1D; --accent-line: #33502F;
+
+  --amber: #E0B96A; --amber-soft: #322A1A; --amber-line: #4E4327;
+  --red:   #E05A4E; --red-soft:   #3A201D; --red-line:   #5A2E29;
+  --blue:  #6FB7E8; --blue-soft:  #1B2836; --blue-line:  #2C4258;
+  --ok: #5FCB73; --doing: #E0B96A; --todo: #4A5245;
+
+  --guide: #3E4A3A; --com: #6E766A;
+  --tree-hov: #20241F; --tree-sel: #26321F;
+  --root-bg: #E9EDE4; --root-fg: #141813; --root-sub: #6E766A; --root-sub-line: #B9C2B2;
+
+  --br-org: #E89A4A; --br-grn: #55B366; --br-blu: #5C93E8;
+  --br-red: #E8695C; --br-pur: #9D7FE0; --br-amb: #D9B840;
+
+  --code-bg: #10120E; --code-ln: #4A5245; --code-hl: #1D2518; --code-hlg: #24301E;
+  --syn-kw: #7BD88F; --syn-ty: #6FB7E8; --syn-fn: #C9A6F0;
+  --syn-st: #E0B96A; --syn-cm: #5F6B5A; --syn-nu: #E05A4E;
+
+  --note-bg: #23261C; --note-line: #45402A; --note-ink: #C9C3A2;
+
+  --tile: #2A3027; --tile-ink: #E9EDE4; --px: #5FCB73;
+  --heat-0: #20241F; --heat-1: #2C4A2F; --heat-2: #3B6B3E; --heat-3: #4C9350; --heat-4: #5FCB73;
+  --lang-go: #6FB7E8; --lang-py: #E0B96A; --lang-md: #5FCB73;
+
+  --tier-ink: #10120E;
+  --tier1: #5C93E8; --tier1-bg: #1B2836; --tier1-bd: #2C4258;
+  --tier2: #5FCB73; --tier2-bg: #1C261B; --tier2-bd: #33502F;
+  --tier3: #E0B96A; --tier3-bg: #322A1A; --tier3-bd: #4E4327;
+  --tier4: #C9A6F0; --tier4-bg: #292236; --tier4-bd: #453A5C;
+  --folder-fill: #C99A4A; --folder-stroke: #A97F3A;
+
+  --sh-1: 0 1px 2px rgba(0,0,0,.3); --sh-2: 0 6px 18px rgba(0,0,0,.35);
+  --sb-thumb: rgba(255,255,255,.14); --sb-thumb-hover: rgba(255,255,255,.28);
+}
+
+/* ============================================================
+   主题 ④ board · 燕麦榜单
+   ============================================================ */
+:root[data-theme="board"] {
+  --bg: #F2EEDF; --panel: #FCFAF1; --panel-2: #F6F2E2; --card: #FFFDF6;
+  --line: #E3DCC4; --line-soft: #EAE4CE; --line-hov: #D5CCAE;
+  --ink: #1D211A; --ink-2: #5F6653; --ink-3: #97997F;
+
+  --accent: #3F9A55; --accent-hi: #2E7A41; --accent-ink: #F4F8EE;
+  --accent-soft: #DDEED9; --accent-line: #BCD9B4;
+
+  --amber: #C9862B; --amber-soft: #F3EBD3; --amber-line: #E3D5A9;
+  --red:   #BC5440; --red-soft:   #F7E3DD; --red-line:   #EFC9C0;
+  --blue:  #2B6BA8; --blue-soft:  #DFEAF8; --blue-line:  #C7D8EF;
+  --ok: #2E7A41; --doing: #C9862B; --todo: #C7C2A6;
+
+  --guide: #BFB894; --com: #97997F;
+  --tree-hov: #F1EAD8; --tree-sel: #DDEED9;
+  --root-bg: #232B21; --root-fg: #E8EFE2; --root-sub: #9DB497; --root-sub-line: #45503F;
+
+  --br-org: #DF8A2B; --br-grn: #3D9A50; --br-blu: #3B77D9;
+  --br-red: #D9483B; --br-pur: #7C5CC4; --br-amb: #C9A22B;
+
+  --code-bg: #FBF8EC; --code-ln: #B9B49A; --code-hl: #EEF3DC; --code-hlg: #E0EAC6;
+  --syn-kw: #2F6B46; --syn-ty: #2B6BA8; --syn-fn: #7C5CC4;
+  --syn-st: #A96A2B; --syn-cm: #A0A086; --syn-nu: #BC5440;
+
+  --note-bg: #F3EBD3; --note-line: #E3D5A9; --note-ink: #6C5F33;
+
+  --tile: #232B21; --tile-ink: #E8EFE2; --px: #9CCB94;
+  --heat-0: #E6E0C8; --heat-1: #B9DCB0; --heat-2: #8CC787; --heat-3: #5FAE63; --heat-4: #3F9A55;
+  --lang-go: #2B6BA8; --lang-py: #C9862B; --lang-md: #3F9A55;
+
+  --tier-ink: #FFFFFF;
+  --tier1: #2B6BA8; --tier1-bg: #DFEAF8; --tier1-bd: #C7D8EF;
+  --tier2: #3F9A55; --tier2-bg: #DDEED9; --tier2-bd: #BCD9B4;
+  --tier3: #C9862B; --tier3-bg: #F3EBD3; --tier3-bd: #E3D5A9;
+  --tier4: #7C5CC4; --tier4-bg: #EFE9FA; --tier4-bd: #D9CCF2;
+  --folder-fill: #F0B45C; --folder-stroke: #D89A3E;
+
+  --sh-1: 0 1px 2px rgba(110,95,55,.08); --sh-2: 0 6px 18px rgba(120,105,60,.10);
+  --sb-thumb: rgba(120,110,70,.3); --sb-thumb-hover: rgba(120,110,70,.5);
+}
+
+/* ============================================================
+   主题 ⑤ slate · 白纸蓝调
+   ============================================================ */
+:root[data-theme="slate"] {
+  --bg: #F7F8FA; --panel: #FFFFFF; --panel-2: #F0F2F6; --card: #FFFFFF;
+  --line: #E4E7EC; --line-soft: #EDF0F4; --line-hov: #C9D0DA;
+  --ink: #1F2430; --ink-2: #4A5262; --ink-3: #8A93A3;
+
+  --accent: #2F6FDE; --accent-hi: #2559B4; --accent-ink: #F4F8FF;
+  --accent-soft: #EEF4FE; --accent-line: #C9DBF8;
+
+  --amber: #C9862B; --amber-soft: #FDF3E4; --amber-line: #F2D9B0;
+  --red:   #D9483B; --red-soft:   #FDF1F0; --red-line:   #F0BFB9;
+  --blue:  #2F6FDE; --blue-soft:  #EEF4FE; --blue-line:  #C9DBF8;
+  --ok: #2E9E5B; --doing: #E28C25; --todo: #C6CCD6;
+
+  --guide: #C6CCD6; --com: #8A93A3;
+  --tree-hov: #EEF1F5; --tree-sel: #E2EBFA;
+  --root-bg: #1F2430; --root-fg: #F5F7FA; --root-sub: #8A93A3; --root-sub-line: #4A5262;
+
+  --br-org: #E28C25; --br-grn: #2E9E5B; --br-blu: #2F6FDE;
+  --br-red: #D9483B; --br-pur: #7C5CC4; --br-amb: #C9A22B;
+
+  --code-bg: #FFFFFF; --code-ln: #C0C6D0; --code-hl: #EFF4FE; --code-hlg: #E2EBFA;
+  --syn-kw: #2F6FDE; --syn-ty: #2E9E5B; --syn-fn: #7C5CC4;
+  --syn-st: #C9862B; --syn-cm: #8A93A3; --syn-nu: #D9483B;
+
+  --note-bg: #FDF3E4; --note-line: #F2D9B0; --note-ink: #7A5A22;
+
+  --tile: #1F2430; --tile-ink: #EEF1F6; --px: #A8D8B8;
+  --heat-0: #E9EDF2; --heat-1: #D7EEDD; --heat-2: #A8D8B8; --heat-3: #6FBF8F; --heat-4: #2E9E5B;
+  --lang-go: #2B6BA8; --lang-py: #C9862B; --lang-md: #2E9E5B;
+
+  --tier-ink: #FFFFFF;
+  --tier1: #2F6FDE; --tier1-bg: #EEF4FE; --tier1-bd: #C9DBF8;
+  --tier2: #2E9E5B; --tier2-bg: #EBF7EF; --tier2-bd: #BFE3CC;
+  --tier3: #E28C25; --tier3-bg: #FDF3E4; --tier3-bd: #F2D9B0;
+  --tier4: #7C5CC4; --tier4-bg: #F3EFFC; --tier4-bd: #D9CCF2;
+  --folder-fill: #F0B45C; --folder-stroke: #D89A3E;
+
+  --sh-1: 0 1px 2px rgba(30,40,60,.06); --sh-2: 0 6px 18px rgba(30,40,60,.08);
+  --sb-thumb: rgba(60,80,120,.25); --sb-thumb-hover: rgba(60,80,120,.45);
+}
